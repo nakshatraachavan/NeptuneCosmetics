@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title> Menu Navigation</title> 
+  <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<style>
+  .menu-4 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .menu-4 * {
+    box-sizing: border-box;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu-4 li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    overflow: hidden;
+  }
+  .menu-4 a {
+    padding: 0.3em 0;
+    color: #212121;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin: 0;
+    text-decoration: none;
+  }
+  .menu-4 a:before,
+  .menu-4 a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu-4 a:before {
+    bottom: 100%;
+    display: block;
+    height: 3px;
+    width: 100%;
+    content: "";
+    background-color: #ff75aa;
+  }
+  .menu-4 a:after {
+    padding: 0.3em 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    content: attr(data-hover);
+    color: #212121;
+    white-space: nowrap;
+  }
+  .menu-4 li:hover a,
+  .menu-4 .current a {
+    transform: translateY(100%);
+  }
+  .topnav {
+    overflow: hidden;
+    background-color: #ff75aa;
+  }
+  
+  .topnav a {
+    /* float:left; */
+    display: block;
+    color: #ff75aa;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: inline-block;
+    font-size: 17px;
+  
+    /* padding: 0.3em 0;
+    color: #212121;
+    position: relative;
+    display: inline-block;
+  
+    margin: 0;
+    text-decoration: none; */
+  }
+  
+  .topnav a:hover {
+    background-color: #00ebc4;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .topnav .search-container {
+    float: right;
+  }
+  
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+  
+  .topnav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #00ebc4;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .topnav .search-container button:hover {
+    background:#cffff7
+  ;
+  }
+  .navigation{
+      display:flex;
+      justify-content:space-between;
+      align-items:right;
+    padding:0px 45px;
+  }
+  .menu{
+      display:flex;
+  }
+  .menu li{
+      position:relative;
+      margin: 15px;
+      list-style: none;
+      display: flex;
+      font-weight:500;
+  }
+  .menu li a{
+      color:#555555 ;
+  }
+  .menu li a:hover{
+      color:	#FF1493;
+  }
+  .num-cart-product{
+      position: absolute;
+      top: -19px;
+      right: -17px;
+      width: 21px;
+      height: 23px;
+      font-size: 0.8rem;
+      border-radius: 50%;
+      background-color:#00ebc4;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 400;
+  }</style>
+<body>
+
+<div class="navigation">
+	<a href="/Makeup/index.php" class="logo">
+	<img src="images/nlogo5.png" width="90" height="80">
+	</a>
+	<ul class="menu">
+    <li><a href="/Makeup/signin.php"><img src="images/profile.png"width="25" height="25">
+      <span class="text-warning bg-light">User</a></li>
+		<li>
+        <a href="cart.php"><img src="images/cart.png"width="25" height="25">
+          <?php
+
+          if (isset($_SESSION['cart'])){
+              $count = count($_SESSION['cart']);
+              echo "<span id=\"cart_count\" class=\"text-warning bg-light\">$count</span>";
+          }else{
+              echo "<span id=\"cart_count\" class=\"text-warning bg-light\">0</span>";
+          }
+
+          ?>
+      </a>
+      </li>
+    <li><a href="/Makeup/signin.php"><img src="images/logout.png"width="25" height="25">
+          <span class="text-warning bg-light">Logout</a></li>
+	</ul>
+</div>
+
+<div class="topnav">
+  <a href="#about"> .</a>
+  <a href="#contact">.</a>
+  <!-- <div class="search-container">
+    <form method="post">
+      <input type="text" id ="search" placeholder="Search.." name="str">
+      <button type="submit" style="color:rgb(255, 255, 255)" name="add" onclick="searchfunction()">Search</button>
+    </form>
+  </div> -->
+</div>
+<div>
+  <br>
+</div>
+<div class="container-fluid">
+	<nav class="style-4">
+		<ul class="menu-4">
+      <li><a href="/Makeup/index.php" data-hover="Home">Home</a></li>
+		  <li><a href="/Makeup/skin.php" data-hover="Skin Cosmetics">Skin Cosmetics</a></li>
+		  <li><a href="/Makeup/hair.php" data-hover="Hair Cosmetics">Hair Cosmetics</a></li>
+		  <li><a href="/Makeup/care.php" data-hover="Self Care Products<">Self Care Products</a></li>
+		  <li><a href="/Makeup/acc.php" data-hover="Accesorries">Accesorries</a></li>
+      
+		</ul>
+	</nav>
+</div>
+<hr>
+</body>
+</html>
